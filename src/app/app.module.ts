@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from 'selenium-webdriver/http';
+import { HttpService } from './http.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +22,10 @@ import { AddComponent } from './add/add.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

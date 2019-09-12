@@ -1,3 +1,29 @@
-<p>
-  add works!
-</p>
+<div class="m-3">
+  <h4>Добавление контакта</h4>
+    <form [formGroup]="itemForm" (ngSubmit)="add()">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Имя</span>
+          </div>
+          <input type="text" class="form-control" formControlName="name">
+        </div>   
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Фамилия</span>
+          </div>
+          <input type="text" class="form-control" formControlName="surname">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Телефон</span>
+          </div>
+          <input type="text" class="form-control" formControlName="phone">
+        </div>
+        
+        
+  
+        <button class="btn btn-success text-white" type="submit">Сохранить</button>
+    </form>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-add',
@@ -7,9 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  constructor() { }
+  id: number;
+  itemForm: FormGroup;
+  Contact;
 
-  ngOnInit() {
+  constructor(
+    private activatedRouter: ActivatedRoute,
+    private router: Router,
+    private httpService: HttpService
+  ) {
+      this.activatedRouter.params.subscribe(param => {
+        this.id = param.id;
+      });
+    }
+
+  ngOnInit() {    
+    this.itemForm = new FormGroup({
+      name: new FormControl(),
+      surname: new FormControl(),
+      phone: new FormControl()
+    }); 
   }
+
+
+  async add() {
+    this.Contact = await this.httpService.postContact(
+      {
+        "id": this.itemForm.value.id,
+        "name": this.itemForm.value.name,
+        "surname": this.itemForm.value.surname,
+        "phone": this.itemForm.value.phone
+      });
+    this.router.navigate([`/`]);
+  }
+
 
 }
